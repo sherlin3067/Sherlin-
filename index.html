@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Game</title>
+    <title>Mood App 💖</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Guess the Number (1 to 10)</h2>
+    <h1>How are you feeling today? 💭</h1>
 
-<input id="guess" placeholder="Enter number">
-<button onclick="check()">Submit</button>
+    <button onclick="setMood('happy')">😊 Happy</button>
+    <button onclick="setMood('sad')">😢 Sad</button>
+    <button onclick="setMood('lazy')">😴 Lazy</button>
+    <button onclick="setMood('tired')">😊 tired</button>
+    <button onclick="setMood('excited')">😊 excited</button>
 
-<p id="result"></p>
+    <h2 id="result"></h2>
 
-<script>
-let number = Math.floor(Math.random() * 10) + 1;
-
-function check() {
-  let guess = document.getElementById("guess").value;
-  if (guess == number) {
-    document.getElementById("result").innerText = "You win!";
-  } else {
-    document.getElementById("result").innerText = "Try again!";
-  }
-}
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
