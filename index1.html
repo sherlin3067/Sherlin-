@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cooking Master 🍳</title>
+</head>
+
+<body style="text-align:center; font-family:Arial; background:linear-gradient(to right,#ff9966,#ff5e62); color:white;">
+
+<h1>👩‍🍳 Cooking Master Game</h1>
+
+<h2 id="dish">Dish: Maggi</h2>
+<p id="timer">⏱ Time: 15</p>
+<p id="score">⭐ Score: 0</p>
+
+<button onclick="step('water')">Boil Water</button>
+<button onclick="step('noodles')">Add Noodles</button>
+<button onclick="step('masala')">Add Masala</button>
+<button onclick="step('cook')">Cook</button>
+
+<h2 id="result"></h2>
+
+<script>
+let levels = [
+  {dish:"Maggi", steps:["water","noodles","masala","cook"]},
+  {dish:"Tea", steps:["water","tea","milk","sugar"]},
+  {dish:"Omelette", steps:["egg","salt","cook"]}
+];
+
+let level = 0;
+let current = 0;
+let score = 0;
+let timeLeft = 15;
+
+function loadLevel() {
+  document.getElementById("dish").innerText = "Dish: " + levels[level].dish;
+  current = 0;
+  timeLeft = 15;
+}
+loadLevel();
+
+function step(choice) {
+  if (choice === levels[level].steps[current]) {
+    current++;
+    score += 10;
+    document.getElementById("score").innerText = "⭐ Score: " + score;
+    document.getElementById("result").innerText = "✅ Correct!";
+
+    if (current === levels[level].steps.length) {
+      level++;
+      if (level < levels.length) {
+        document.getElementById("result").innerText = "🔥 Level Up!";
+        loadLevel();
+      } else {
+        document.getElementById("result").innerText = "🏆 You are a Master Chef!";
+      }
+    }
+  } else {
+    document.getElementById("result").innerText = "❌ Wrong! Restarting level";
+    current = 0;
+  }
+}
+
+setInterval(function() {
+  timeLeft--;
+  document.getElementById("timer").innerText = "⏱ Time: " + timeLeft;
+
+  if (timeLeft <= 0) {
+    document.getElementById("result").innerText = "⏰ Time Over!";
+    current = 0;
+    timeLeft = 15;
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
